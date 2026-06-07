@@ -25,14 +25,7 @@ Claude / MCP Client
 
 ## Setup
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/PromptEngineer48/Marlin-2B-MCP.git
-cd Marlin-2B-MCP
-```
-
-### 2. Install Miniconda
+### 1. Install Miniconda
 
 ```bash
 curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -40,6 +33,13 @@ bash ./Miniconda3-latest-Linux-x86_64.sh
 ```
 
 Restart your shell or run `source ~/.bashrc` after installation.
+
+### 2. Clone the repository
+
+```bash
+git clone https://github.com/PromptEngineer48/Marlin-2B-MCP.git
+cd Marlin-2B-MCP
+```
 
 ### 3. Create the conda environment
 
