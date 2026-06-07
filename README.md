@@ -2,6 +2,8 @@
 
 An MCP (Model Context Protocol) server that exposes [NemoStation/Marlin-2B](https://huggingface.co/NemoStation/Marlin-2B) — a video language model — as tools for AI assistants. It provides two tools: **describe_video** (caption + scene + events) and **search_video_event** (temporal event grounding).
 
+**Repository:** https://github.com/PromptEngineer48/Marlin-2B-MCP
+
 ---
 
 ## Architecture
@@ -26,8 +28,8 @@ Claude / MCP Client
 ### 1. Clone the repository
 
 ```bash
-git clone <repo-url>
-cd <repo-directory>
+git clone https://github.com/PromptEngineer48/Marlin-2B-MCP.git
+cd Marlin-2B-MCP
 ```
 
 ### 2. Install Miniconda
@@ -78,6 +80,14 @@ pip install fastapi uvicorn
 
 Before starting the servers, expose ports **8005** and **8006** in your RunPod pod settings under **HTTP Ports**.
 
+RunPod will give you a public proxy URL for port 8006 in the format:
+
+```
+https://<pod-id>-8006.proxy.runpod.net/mcp
+```
+
+You will need this URL when configuring your MCP client.
+
 ---
 
 ## Starting the servers
@@ -111,10 +121,32 @@ Your MCP server is now live on **port 8006**.
 
 ---
 
-## Connecting a client
+## Connecting to Hermes
 
-Point your MCP client (e.g. Claude Desktop) at:
+Open your Hermes config file:
 
 ```
-http://<your-host>:8006
+C:\Users\<your-username>\AppData\Local\hermes\config.yaml
 ```
+
+Add the `marlin` entry under `mcp_servers`:
+
+```yaml
+known_plugin_toolsets:
+  mcp_servers:
+    claude-code:
+      command: claude
+      args:
+        - mcp
+        - serve
+      timeout: 300
+
+    marlin:
+      url: "https://<your-pod-id>-8006.proxy.runpod.net/mcp"
+      timeout: 120
+      connect_timeout: 60
+```
+
+Replace `<your-pod-id>` with the actual pod ID shown in your RunPod dashboard. The full URL is visible in RunPod under the pod's exposed HTTP ports.
+
+Save the file and restart Hermes — the `marlin` toolset will appear and Marlin's video tools will be available.
