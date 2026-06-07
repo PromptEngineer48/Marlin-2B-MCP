@@ -25,7 +25,13 @@ Claude / MCP Client
 
 ## Setup
 
-### 1. Install Miniconda
+### 1. Update the system
+
+```bash
+apt-get update && apt-get upgrade -y
+```
+
+### 2. Install Miniconda
 
 ```bash
 curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -34,33 +40,33 @@ bash ./Miniconda3-latest-Linux-x86_64.sh
 
 Restart your shell or run `source ~/.bashrc` after installation.
 
-### 2. Clone the repository
+### 3. Clone the repository
 
 ```bash
 git clone https://github.com/PromptEngineer48/Marlin-2B-MCP.git
 cd Marlin-2B-MCP
 ```
 
-### 3. Create the conda environment
+### 4. Create the conda environment
 
 ```bash
 conda create -n vlm python=3.13 -y
 conda activate vlm
 ```
 
-### 4. Install MCP and requests
+### 5. Install MCP and requests
 
 ```bash
 pip install mcp requests
 ```
 
-### 5. Install the video model dependencies
+### 6. Install the video model dependencies
 
 ```bash
 pip install "transformers>=5.7.0" "torch>=2.11.0" torchcodec "qwen-vl-utils>=0.0.14" av pillow
 ```
 
-### 6. Install torchvision (match your CUDA version)
+### 7. Install torchvision (match your CUDA version)
 
 Find the correct install command for your CUDA version at **https://pytorch.org/** and run it. Example for CUDA 12.4:
 
@@ -68,7 +74,7 @@ Find the correct install command for your CUDA version at **https://pytorch.org/
 pip install torchvision --index-url https://download.pytorch.org/whl/cu124
 ```
 
-### 7. Install FastAPI and Uvicorn
+### 8. Install FastAPI and Uvicorn
 
 ```bash
 pip install fastapi uvicorn
