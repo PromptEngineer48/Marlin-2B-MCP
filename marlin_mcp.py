@@ -5,7 +5,7 @@ mcp = FastMCP("Marlin")
 
 mcp.settings.transport_security.enable_dns_rebinding_protection = False
 
-MARLIN_API = "http://127.0.0.1:9000"
+MARLIN_API = "http://127.0.0.1:8005"
 
 
 @mcp.tool()
